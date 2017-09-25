@@ -17,7 +17,7 @@ namespace SM64O
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main2()
         {
             System.AppDomain.CurrentDomain.UnhandledException += UnhandledException;
 
@@ -28,6 +28,17 @@ namespace SM64O
                 ResetMe = false;
                 Application.Run(new Form1());
             } while (ResetMe);
+        }
+
+        public static void Main()
+        {
+            var mea = new MacOSXEmulatorAccessor();
+            //mea.Open("nano");
+            mea.Open("MacVim");
+            byte[] xs = new byte[1024];
+            Console.WriteLine(mea.ReadMemoryAbs(0x0, xs, 1024));
+
+
         }
 
         public static bool ResetMe = false;

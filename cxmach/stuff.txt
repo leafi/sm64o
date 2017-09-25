@@ -1,0 +1,75 @@
+ 185 extern
+ 186 #endif  /* mig_external */
+ 187 kern_return_t mach_vm_read_overwrite
+ 188 (
+ 189         vm_map_t target_task,
+ 190         mach_vm_address_t address,
+ 191         mach_vm_size_t size,
+ 192         mach_vm_address_t data,
+ 193         mach_vm_size_t *outsize
+ 194 );
+
+259 extern kern_return_t task_for_pid(
+260                                 mach_port_name_t target_tport,
+261                                 int pid,
+262                                 mach_port_name_t *t);
+263 
+
+
+
+ 72 extern mach_port_t mach_host_self(void);
+ 73 extern mach_port_t mach_thread_self(void);
+ 74 extern kern_return_t host_page_size(host_t, vm_size_t *);
+ 75 
+ 76 extern mach_port_t      mach_task_self_;
+
+ // Returns a string appropriate to the error argument given
+ char *mach_error_string(mach_error_t error_value);
+
+
+ type mach_port_name_t == unsigned int (32-bit)
+ mach_vm_size_t = uint64_t
+ mach_vm_address_t = uint64_t
+ mach_msg_type_number_t == natural_t == unsigned int (32-bit)
+ vm_map_t == mach_port_t == natural_t
+ vm_offset_t = uint64_t (but maybe natural_t ???)
+ boolean_t = unsigned int/int
+ pid_t == __darwin_pid_t == __int32_t
+ vm_prot_t == int
+ mach_vm_offset_t == uint64_t
+ kern_return_t == int
+ mach_port_t == __darwin_mach_port_t == __darwin_mach_port_name_t
+ vm_region_flavor_t == int
+ vm_region_info_t == int *
+
+ 101 #endif  /* mig_external */
+ 102 kern_return_t mach_vm_protect
+ 103 (
+ 104         vm_map_t target_task,
+ 105         mach_vm_address_t address,
+ 106         mach_vm_size_t size,
+ 107         boolean_t set_maximum,
+ 108         vm_prot_t new_protection
+ 109 );
+
+
+ 317 kern_return_t mach_vm_region
+ 318 (
+ 319         vm_map_t target_task,
+ 320         mach_vm_address_t *address,
+ 321         mach_vm_size_t *size,
+ 322         vm_region_flavor_t flavor,
+ 323         vm_region_info_t info,
+ 324         mach_msg_type_number_t *infoCnt,
+ 325         mach_port_t *object_name
+ 326 );
+
+ 159 kern_return_t mach_vm_write
+ 160 (
+ 161         vm_map_t target_task,
+ 162         mach_vm_address_t address,
+ 163         vm_offset_t data,
+ 164         mach_msg_type_number_t dataCnt
+ 165 );
+ 166 
+
